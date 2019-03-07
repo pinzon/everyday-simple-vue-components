@@ -1,13 +1,20 @@
 <template>
-    <i v-if="state" class="fa fa-check-square-o" aria-hidden="true" @click="click()"></i>
+    <i v-if="value" class="fa fa-check-square-o" aria-hidden="true" @click="click()"></i>
     <i v-else class="fa fa-square-o" aria-hidden="true" @click="click()"></i>
 </template>
 <script>
 // Requires fontawesome.com
 export default {
-    props: [
-        'state', //bool
-    ],
+    props: {
+        value:{
+            type: Boolean,
+        }
+    },
+
+    model:{
+        prop: 'value',
+        event: 'click'
+    },
 
     data: function () {
         return {};
@@ -24,7 +31,8 @@ export default {
 
     methods: {
         click: function () {
-            this.$emit('click');
+            this.$emit('click', !this.$props.value)
+            // this.$emit('click');
         },
     }
 }

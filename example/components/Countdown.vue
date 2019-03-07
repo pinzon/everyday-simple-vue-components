@@ -12,14 +12,14 @@ export default {
   data: function() {
     return {
       stopwatch: this.seconds.toString(),
-      interval: null
+      interval: null // Old code for firefox
     };
   },
 
   mounted() {
     // console.log('mounted')
     this.interval = setInterval(this.updateTimer, 1000);
-    this.stopwatch = this.hhmmss(this.seconds);
+    this.stopwatch = this.hhmmss(this.$this.seconds);
   },
 
   beforeDestroy() {
@@ -31,10 +31,11 @@ export default {
 
   methods: {
     updateTimer: function() {
-      if (this.active && this.seconds > 0) {
-        this.$emit("update:seconds", this.seconds - 1);
+      // console.log('updating')
+      if (this.$props.active && this.$props.seconds > 0) {
+        this.$emit("update:seconds", this.$props.seconds - 1);
       }
-      this.stopwatch = this.hhmmss(this.seconds);
+      this.stopwatch = this.hhmmss(this.$props.seconds);
     },
 
     hhmmss: function(secs) {

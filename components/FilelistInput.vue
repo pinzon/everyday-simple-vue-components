@@ -15,7 +15,15 @@
 </template>
 <script>
 export default {
-  props: ["files"], //Object variable where to save the list of files
+  props: [
+    //Object variable where to save the list of files
+    'files'
+  ], 
+
+  model: {
+    prop: 'files',
+    event: 'change'
+  },
 
   data: function() {
     return {
@@ -30,7 +38,7 @@ export default {
   methods: {
     fileSelection: function(e) {
       this.filesArray = Array.from(e.target.files || e.dataTransfer.files);
-      this.$emit("update:files", e.target.files || e.dataTransfer.files);
+      this.$emit("change", e.target.files || e.dataTransfer.files);
     },
 
     deleteFromSelection: function(indexToDelete) {
@@ -43,17 +51,19 @@ export default {
         dTransfer.items.add(element);
       });
 
-      this.$emit("update:files", dTransfer.files);
+      this.$emit("change", dTransfer.files);
     }
   }
 };
 </script>
-<style scoped>
+
+<style lang="scss">
 .file-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
+  // align-items: flex-start;
+  justify-content: center;
   width: 100%;
 }
 
@@ -62,6 +72,7 @@ export default {
   background-color: rgba(50, 50, 50, 0.5);
   border-radius: 5px;
   padding: 5px;
+  margin: 5px;
   cursor: pointer;
   position: relative;
 }
