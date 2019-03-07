@@ -1,6 +1,6 @@
 <template>
-    <i v-if="value" class="fa fa-check-square-o" aria-hidden="true" @click="click()"></i>
-    <i v-else class="fa fa-square-o" aria-hidden="true" @click="click()"></i>
+    <span class="pointer" v-if="value" aria-hidden="true" @click="click()">&#9745;</span>
+    <span class="pointer" v-else aria-hidden="true" @click="click()">&#9746;</span>
 </template>
 <script>
 // Requires fontawesome.com
@@ -37,3 +37,9 @@ export default {
     }
 }
 </script>
+<style>
+.pointer{
+    cursor: pointer;
+}
+</style>
+

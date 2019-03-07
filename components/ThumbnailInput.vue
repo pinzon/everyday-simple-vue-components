@@ -1,13 +1,12 @@
 <template>
-  <div class="input-container">
     <!-- Input Image -->
     <input ref="input" v-if="!thumbnailUrl" @change="fileSelection" type="file">
     <div v-else class="thumbnail-container" @click="deleteImage()">
       <img :src="thumbnailUrl">
-      <span class="delete-button">&times;</span>
-      
+      <div class="overlay">
+        <span class="delete-button">&times;</span>
+      </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
@@ -75,23 +74,28 @@ export default {
   position: relative;
 }
 
-.thumbnail-container:hover img {
-  mask: linear-gradient(rgba(0, 0, 0, 1.0), #fff);
+.thumbnail-container .overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.9);
+  flex-direction: column;
+  justify-content: center;
 }
 
-.thumbnail-container:hover .delete-button{
-  display: block;
+.thumbnail-container:hover .overlay {
+  display: flex;
+  
 }
 
 .thumbnail-container .delete-button {
-  display: none;
-  font-size: 30px;
-  color: #000;
+  color: #fff;
   font-weight: bold;
-  align-self: center;
-  position: absolute;
-  top: 45%;
-  left: 45%;
+  font-size: 30px;
+
 }
 </style>
 

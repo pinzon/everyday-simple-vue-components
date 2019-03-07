@@ -35,7 +35,7 @@ export default {
 
   methods: {
     updateTimer: function() {
-      console.log('updating')
+      // console.log('updating')
       if (this.$props.active && this.$props.seconds > 0) {
         this.$emit("update:seconds", this.$props.seconds - 1);
       }

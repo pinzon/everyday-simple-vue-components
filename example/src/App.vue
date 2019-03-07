@@ -2,8 +2,8 @@
   <div id="app">
     <h3>Action Checkbox</h3>Status:
     <action-checkbox v-model="checkboxStatus" @click="checkboxAction"></action-checkbox>
-    {{checkboxStatus ? 'True' : false}}
 
+    {{checkboxStatus ? 'True' : false}}
     <h3>CountDown</h3>Time left:
     <countdown :active="checkboxStatus" :seconds.sync="secondsLeft"></countdown>
 
@@ -14,20 +14,20 @@
 
     <h3>Modal</h3>
     <button type="button" @click="showModal = true">Show Modal</button>
-    <modal v-if="showModal"> 
-      This is a modal <br>
-      <button @click="showModal =  false"><i class="fa fa-times"></i> Close</button>
+    <modal v-if="showModal">This is a modal
+      <br>
+      <button @click="showModal =  false">
+        <i class="fa fa-times"></i> Close
+      </button>
     </modal>
 
     <h3>Paginator</h3>
-    <paginator :pages="10" :current.sync="currentPage" ></paginator>
+    <paginator :pages="10" :current.sync="currentPage"></paginator>
 
-     <h3>Thumbnail Input</h3>
-     <div style="width: 100%">
-      <thumbnail-input v-model="profileImage" ></thumbnail-input>
+    <h3>Thumbnail Input</h3>
+    <div class="container">
+      <thumbnail-input v-model="profileImage"></thumbnail-input>
     </div>
-    
-
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
       checkboxStatus: true,
       secondsLeft: 10000,
       fileList: null,
-      showModal:false,
+      showModal: false,
       currentPage: 0,
       profileImage: null
     };
@@ -79,4 +79,14 @@ export default {
   margin-top: 60px;
 }
 
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+h3{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 </style>
